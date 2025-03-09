@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cofre</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .cofre {
+            display: flex; /* Alinha os elementos em linha */
+            align-items: center; /* Centraliza verticalmente */
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .imagem {
+            margin-right: 20px; /* Espaço entre a imagem e o texto */
+        }
+        .digitos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #senhaDisplay {
+            margin: 10px 0;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #mensagem {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cofre">
+    <div class="imagem">
+        <img src="imgs/us.jpeg" width="200px" alt="">
+    </div>
+    <div>
+        <h4>Digite a senha</h4>
+        <div id="senhaDisplay">****</div>
+        <div class="digitos">
+            <button onclick="adicionarDigito('1')">1</button>
+            <button onclick="adicionarDigito('2')">2</button>
+            <button onclick="adicionarDigito('3')">3</button>
+            <button onclick="adicionarDigito('4')">4</button>
+            <button onclick="adicionarDigito('5')">5</button>
+            <button onclick="adicionarDigito('6')">6</button>
+            <button onclick="adicionarDigito('7')">7</button>
+            <button onclick="adicionarDigito('8')">8</button>
+            <button onclick="adicionarDigito('9')">9</button>
+            <button onclick="removerDigito()">C</button> <!-- Botão para remover o último dígito -->
+            <button onclick="adicionarDigito('0')">0</button>
+            <button onclick="verificarSenha()">OK</button>
+        </div>
+        <p id="mensagem"></p>
+    </div>
+</div>
+
+<script>
+    const senhaCorreta = "2222";
+    let senhaInserida = "";
+
+    function adicionarDigito(digito) {
+        if (senhaInserida.length < 4) { // Limita a 4 dígitos
+            senhaInserida += digito;
+            atualizarDisplay();
+        }
+    }
+
+    function removerDigito() {
+        senhaInserida = senhaInserida.slice(0, -1); // Remove o último dígito
+        atualizarDisplay();
+    }
+
+    function atualizarDisplay() {
+        document.getElementById("senhaDisplay").textContent = "*".repeat(senhaInserida.length);
+    }
+
+    function verificarSenha() {
+        const mensagem = document.getElementById("mensagem");
+        if (senhaInserida === senhaCorreta) {
+            window.location.href = "sucess.html"; // Redireciona para a página de sucesso
+        } else {
+            mensagem.textContent = "Senha incorreta. Tente novamente.";
+            senhaInserida = ""; // Limpa a senha inserida
+            atualizarDisplay();
+        }
+    }
+</script>
+
+</body>
+</html>

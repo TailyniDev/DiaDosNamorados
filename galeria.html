@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Fotos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stories {
+            margin: 10px;
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+        }
+
+        .stories img {
+            width: 200px;
+            border-radius: 8px;
+            transition: transform 0.3s; /* Efeito de transição ao passar o mouse */
+        }
+
+        .stories img:hover {
+            transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+        }
+
+        .modal {
+            display: none; /* Inicialmente escondido */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro com opacidade */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Fica acima de outros elementos */
+        }
+
+        .modal-content {
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .modal-content img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 12px;
+        }
+
+        .modal-text {
+            margin-left: 20px;
+            max-width: 400px; /* Largura máxima do texto */
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Nossa Galeria de Fotos</h1>
+    <div class="gallery">
+        <div class="stories" onclick="openModal('imgs/us5.jpeg', 'Desde o primeiro momento em que nos conhecemos, senti uma conexão especial. Era como se nossas almas já se conhecessem. A forma como me olhou e sorriu me fez sentir que havia algo único entre nós. Essa conexão instantânea me fez perceber que você era alguém especial.')">
+            <img src="imgs/us5.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us6.jpeg', 'Uma das coisas que mais amo em você é o jeito que você me faz rir. Como você tem um senso de humor incrível e sempre sabe como iluminar meu dia. Cada risada compartilhada nos aproxima ainda mais e me faz perceber o quanto você é importante na minha vida.')">
+            <img src="imgs/us6.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us7.jpeg', 'Você sempre está ao meu lado, me apoiando em tudo que faço. Nos momentos difíceis, é a meu maior apoio, e isso me faz sentir segura e amada. Saber que posso contar com você em qualquer situação me fez me apaixonar ainda mais.')">
+            <img src="imgs/us7.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us8.jpeg', 'Meu namorado tem uma habilidade incrível de me entender, mesmo quando eu não digo uma palavra. Você percebe meus sentimentos e emoções, e isso cria um laço profundo entre nós. Essa empatia me faz sentir como realmente se importa comigo.')">
+            <img src="imgs/us8.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us9.jpeg', 'São os pequenos gestos que me conquistaram. Desde mensagens carinhosas durante o dia até pequenas brincadeiras. Esses detalhes mostram o quanto se importa e me fazem sentir amada de uma maneira única.')">
+            <img src="imgs/us9.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us10.jpeg', 'Cada momento que passamos juntos é especial. Seja assistindo a um filme, caminhando no parque ou apenas conversando, eu valorizo cada segundo ao seu lado. Esses momentos criam memórias que guardarei para sempre no meu coração.')">
+            <img src="imgs/us10.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us11.jpeg', 'Você me inspira a ser uma pessoa melhor. Com sua determinação e paixão pela vida, você me motiva a perseguir meus sonhos e a acreditar em mim mesma. Essa inspiração é uma das razões pelas quais me apaixonei por você.')">
+            <img src="imgs/us11.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us12.jpeg', 'A química que temos é inegável. Cada toque, cada olhar, cada sorriso parece carregar uma energia especial. Essa atração mútua me faz sentir viva e apaixonada, e é uma das coisas que mais amo em nosso relacionamento.')">
+            <img src="imgs/us12.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us13.jpeg', 'Descobrir que compartilhamos interesses e paixões semelhantes foi uma das melhores surpresas. Seja a música, os filmes ou até mesmo hobbies, essa afinidade nos uniu ainda mais. É maravilhoso ter alguém com quem posso compartilhar minhas paixões e explorar novas experiências.')">
+            <img src="imgs/us13.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us14.jpeg', 'A sua presença traz uma paz que eu nunca havia sentido antes. Nos momentos de estresse ou ansiedade, tem a capacidade de me acalmar com suas palavras e seu jeito tranquilo. Essa serenidade me faz sentir que estou em casa, e isso é algo que me faz amá-lo ainda mais.')">
+            <img src="imgs/us14.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us15.jpeg', 'O respeito que temos um pelo outro é fundamental em nosso relacionamento. Como você sempre valoriza minha opinião e me trata como igual. Essa base de respeito me faz sentir segura e amada, e é uma das razões pelas quais me apaixonei por você.')">
+            <img src="imgs/us15.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us16.jpeg', 'Cada dia ao seu lado é uma nova aventura. Seu espírito aventureiro que me encoraja a sair da minha zona de conforto e experimentar coisas novas. Essa disposição para explorar o mundo juntos me faz sentir viva e apaixonada.')">
+            <img src="imgs/us16.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us17.jpeg', 'A capacidade de sermos vulneráveis um com o outro é algo que valorizo profundamente. Você me permite ser eu mesma, sem máscaras, e isso cria um espaço seguro para que possamos compartilhar nossos medos e sonhos. Essa intimidade é uma das razões pelas quais me apaixonei.')">
+            <img src="imgs/us17.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us18.jpeg', 'Às vezes, não é preciso dizer nada. O seu olhar é capaz de transmitir tanto amor e carinho que me faz sentir especial. Esses momentos silenciosos, onde tudo que precisamos é de um olhar, são mágicos e me fazem apaixonar ainda mais.')">
+            <img src="imgs/us18.jpeg" alt="">
+        </div>
+        <div class="stories" onclick="openModal('imgs/us19.jpeg', 'O cuidado que você tem por mim é algo que me toca profundamente. Desde pequenos gestos, como perguntar como foi meu dia, até estar presente nos momentos difíceis, como você sempre demonstra seu amor de maneiras que me fazem sentir valorizada e amada.')">
+            <img src="imgs/us19.jpeg" alt="">
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
+            <div class="modal-text" id="modalText"></div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(imageSrc, text) {
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('modalText').innerText = text;
+            document.getElementById('modal').style.display = 'flex'; // Mostra o modal
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none'; // Esconde o modal
+        }
+    </script>
+</body>
+</html>
