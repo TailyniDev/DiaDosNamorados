@@ -1,2 +1,2 @@
 # DiaDosNamorados
-https://hinyzw.github.io/DiaDosNamorados/
+https://TailyniDev.github.io/DiaDosNamorados/
